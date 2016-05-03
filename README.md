@@ -24,5 +24,5 @@ $ sudo apt-get install nodejs
  $ node app.js
 
  ```
-at root of my folder.
+at root where app.js file is
  
