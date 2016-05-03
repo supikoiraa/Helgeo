@@ -6,14 +6,14 @@ Setting up the environment
  Depending on your OS:
 - On Linux: 
 
- ```
+  ```
 $ sudo apt-get install nodejs
 
-```
+ ```
 
 - On Windows Use the MSI file and follow the prompts to install the Node.js.
   
-##  Verify installation
+ ##  Verify installation
   
   run 
   [npm install](https://docs.npmjs.com/cli/install) to get needed packages for node.
@@ -23,6 +23,6 @@ $ sudo apt-get install nodejs
   ```
  $ node app.js
 
-```
+ ```
 at root of my folder.
  
