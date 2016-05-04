@@ -1,0 +1,16 @@
+[
+  {
+    "service_request_id": "12og6ob03q0mbm4phk85",
+    "service_code": "180",
+    "description": "Katu on kapea kuja, joka kuitenkin toimii bussiväylänä (50). Koska kadun (kujan) toiselle puolelle saa pysäköidä, ei kujalle mahdu kahta autoa rinnakkain ajamaan vastakkain yhtäaikaa. Jompaan kumpaan päähän pitää jäädä odottamaan ja antamaan tietä vastaantulevalle. Vaaratilanteita tästä aiheutuu erityisesti bussien tullessa vastaan (n. 10min välein). Ehkä ratkaisu olisi kieltää pysäköinti kadun varressa? Tai ainakin rajoittaa sitä jotenkin?",
+    "requested_datetime": "2016-05-03T08:45:32+03:00",
+    "updated_datetime": "2016-05-04T14:02:43+03:00",
+    "status": "open",
+    "status_notes": "Kiitos viestistänne.\n\nHelsingin kaupungin liikenteelliset ratkaisut suunnitellaan kaupunkisuunnitteluviraston liikennesuunnittelussa.  Joten olemme välittäneet ehdotuksenne kaupunkisuunnitteluvirastolle. \n\nwww.ksv.hel.fi\nYstävällisin terveisin\n\nRakennusviraston asiakaspalvelu\nPL 1508 Elimäenkatu 5\n00099 Helsingin kaupunki\np. 09-310 39000, fax. 09-310 39001\nrakennusvirasto@hel.fi\navoinna\nma 8.15-17 \nti - to 8.15-16\npe 10-15\n",
+    "agency_responsible": "Kaupunkisuunnitteluvirasto",
+    "service_name": "Other issue to be fixed",
+    "address": "Suonotkonkuja, 00630 Helsinki, Suomi",
+    "lat": 60.2318238,
+    "long": 24.9361838
+  }
+]

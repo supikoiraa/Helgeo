@@ -1,100 +1,91 @@
-/*
-$(document).ready(function(){
- TEST(); 
-});
-*/
+
 var global_markers = [];   
 var markers=[];
 var map;
 
+//initialize map
 function initMap() {
-   geocoder = new google.maps.Geocoder();
     var latlng = new google.maps.LatLng(60.25, 25.00);
+    //setup map's attributes
     var myOptions = {
         zoom: 8,
         center: latlng,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     }
     map = new google.maps.Map(document.getElementById("map"), myOptions);
-      }
+      };
 
-/*
-   function geocodeAddress(geocoder, resultsMap) {
-        var address = document.getElementById('address').value;
-        geocoder.geocode({'address': address}, function(results, status) {
-          if (status === google.maps.GeocoderStatus.OK) {
-            resultsMap.setCenter(results[0].geometry.location);
-            var marker = new google.maps.Marker({
-              map: resultsMap,
-              position: results[0].geometry.location
-            });
-          } else {
-            alert('Geocode was not successful for the following reason: ' + status);
-          }
-        });
-      }
- */  
-
-(function ($) {
-    $('#button').on('click', function () {
-        // remove resultset if this has already been run
-        $('.content ul').remove();
-        // add spinner to indicate something is happening
-        $('<i class="fa fa-refresh fa-spin"/>').appendTo('body');
-        
+  
+  function getData()
+  {
         // get selected status code from selectbox
         var status = $('select option:selected').text();
 
         // make AJAX call
         $.get('data' + status, function (data) {
+          //parse Json string to Json object
          var dataSet = JSON.parse(data);
-         var tableContent= '';
         for(var item in dataSet) { 
-
-      
-        markers.push([dataSet[item].lat, dataSet[item].long ,dataSet[item].description]);
-        // one by one get and add fortable
-     //   tableContent += '<tr>';
-        // this all added into the tableContent variable
-     //   tableContent += '<td>'+dataSet[item].lat + dataSet[item].long + '</td>'; 
-
-
-        //add variable into table id of data
-        $('#data').html(tableContent); // add into the table
-        } 
+         //push data to markers array
+        markers.push([dataSet[item].lat, dataSet[item].long ,dataSet[item].description, dataSet[item].status]);
         
+    }       //run addmarker function
+           addMarker();      
         });
-      //  console.log(markers);
-addMarker();
-}) 
-})(jQuery);
+  };
+   
 
+   
+   
 function addMarker() {
-var infowindow = new google.maps.InfoWindow({});
-//var markers = [[60.2264114, 25.1672193, 'trialhead0'], [60.2409844, 24.9495069, 'trialhead1'], [60.2795157, 24.9912161, 'trialhead2']];
-  
+    geocoder = new google.maps.Geocoder();
+    var infowindow = new google.maps.InfoWindow({});  
     for (var i = 0; i < markers.length; i++) {
-        // obtain the attribues of each marker
+        
+        // obtain the attributes of each marker
         var lat = parseFloat(markers[i][0]);
         var lng = parseFloat(markers[i][1]);
         var trailhead_name = markers[i][2];
-        console.log("lat "+lat+ " long "+lng +" trailhead "+ trailhead_name)
+        var status = markers[i][3];
         var myLatlng = new google.maps.LatLng(lat, lng);
-        var contentString = "<html><body><div><p><h2>" + trailhead_name + "</h2></p></div></body></html>";
-
+        var contentString = "<html><body><div><p><h3>" + trailhead_name + "</h3></p></div></body></html>";
+     
+        //check whether the status is closed/open and select icon image
+        if(status == "closed")
+        {
+             var image = "/lock.png"
+        }
+        else{
+        var image = "/open.png"
+        }
+        //setup marker
         var marker = new google.maps.Marker({
             position: myLatlng,
             map: map,
-            title: "Coordinates: " + lat + " , " + lng + " | Trailhead name: " + trailhead_name
+            title: "Coordinates: " + lat + " , " + lng + " | Trailhead name: " + trailhead_name,
+            icon:image
         });
-
+        
+        //put contentString as markers infowindow attribute
         marker['infowindow'] = contentString;
-
-        global_markers[i] = marker;
-
+        
+        //Push marker to end of global_markers to keep track of all markers
+        global_markers.push(marker);
+        
+        //add eventlistener for pop-up windows to show 
         google.maps.event.addListener(global_markers[i], 'click', function() {
             infowindow.setContent(this['infowindow']);
             infowindow.open(map, this);
         });
     }
+};
+
+function deleteMarkers(){
+   // set array length to 0 for later use
+  markers.length = 0;
+    for(i=0; i<global_markers.length; i++){
+        //set setMap to null to clear all markers
+        global_markers[i].setMap(null);
+    }
+
 }

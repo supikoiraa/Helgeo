@@ -6,24 +6,24 @@
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+     <script type="text/javascript" src="js/geofunctions.js"></script>
   </head>
   <body>
+       <div id="map">
+    </div>
     <div id="floating-panel">
-      <input id="address" type="textbox" value="Sydney, NSW">
-      <input id="submit" type="button" value="Geocode">
       <select>
         <option>closed</option>
         <option>open</option>
-
-        <input id="button" type="button" value="Set status">
-      </select>
-        <table id='data'></table>
+        </select>
+        <input id="button" type="button" value="Search tickets with status" onclick="getData()">
+         <input id="deleteButton" type="button" value="Delete markers" onclick="deleteMarkers()">
+         <p>Track issues and feedbacks from city of Helsinki simply by clicking "search tickets with status" with a selected status of closed/open!</p>
+         <br>
+         <img src="/open.png" aling ="left"> This icon shows tickets with a status "open".
+         <br>
+         <img src="/lock.png" aling ="left"> This icon shows tickets with a status "closed" .
     </div>
-      <div id="map">
-    </div>
-    
-    
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YourApiKey&callback=initMap"></script>
-    <script type="text/javascript" src="js/geofunctions.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJRt5hdY6jbZoNDO3g6SzOnNAP31ZK3xE&callback=initMap"></script>
   </body>
 </html>
